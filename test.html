@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang = "en-US">
+ <head>
+ <meta charset = "UTF-8">
+ <title>test.html</title>
+
+ <link rel="stylesheet" href="flipclock/flipclock.css">
+ <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+ <script src="flipclock/flipclock.js"></script>
+
+ <script type = "text/javascript">
+  // from textBoxes.html
+  var look_at_menu = ["menu","grab","look","gaze","stare","pick"];
+  var order = ["order","ask","demand"];
+  var stage_num = 0;
+  var concern = 0;
+  function word_present(input,ref){
+    for (str in input.split(" ")){
+      if (ref.includes(input))
+        return true;
+    }
+    return false;
+  }
+  function main(){
+    var input = document.getElementById("input").value.toLowerCase().trim();
+    var output = document.getElementById("output");
+    var narrator = document.getElementById("narrator");
+    if (stage_num == 1)
+      stage1(input,output);
+    if (stage_num == 0)
+      meal_start(input,output);
+  }
+  function meal_start(input,output){
+    if (word_present(input,look_at_menu)){
+      output.innerHTML = "show menu";
+      stage_num = 1;
+      return;
+    }
+  }
+  function stage1(input,output){
+    if (input == "order"){
+      output.innerHTML = "order what?";
+      return;
+    }
+    if (word_present(input,order)){
+      output.innerHTML = "I don't think that's on the menu";
+      return;
+    }
+    if (input == "order nothing"){
+      concern += 3;
+      output.innerHTML = "WHAT! Game over";
+      return;
+    }
+  }
+  function stage2(){
+
+  }
+  function stage3(){
+
+  }
+ </script>
+
+ </head>
+ <body>
+ <h1>Test of system</h1>
+ <div class="clock" style="margin:2em;"></div>
+
+ <script type="text/javascript">
+   var clock;
+
+   $(document).ready(function() {
+
+     // Instantiate a counter
+     clock = new FlipClock($('.clock'), 10, {
+       clockFace: 'Counter',
+       autoStart: true,
+       countdown: true
+     });
+
+   });
+ </script>
+ <form action = ">"
+  <fieldset>
+  <label>Input: </label>
+  <br>
+  <input type = "text"  id = "input" />
+  <br>
+  <input type = "button"  value = "enter input" onclick = "main()"/>
+  <br>
+  <label>Output: </label>
+  <br>
+  <h1 id="output">output here</h1>
+  <br>
+  <label>Narrator: </label>
+  <br>
+  <h1 id="narrator">Narrator</h1>
+  <br>
+  </fieldset>
+ </form>
+ </body>
+</html>
