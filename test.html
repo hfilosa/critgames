@@ -13,7 +13,9 @@
   var look_at_menu = ["menu","grab","look","gaze","stare","pick"];
   var order = ["order","ask","demand"];
   var stage_num = 0;
+  var stages = [meal_start,stage1,stage2,stage3,menu_look];
   var concern = 0;
+  var timer;
   function word_present(input,ref){
     for (str in input.split(" ")){
       if (ref.includes(input))
@@ -25,10 +27,8 @@
     var input = document.getElementById("input").value.toLowerCase().trim();
     var output = document.getElementById("output");
     var narrator = document.getElementById("narrator");
-    if (stage_num == 1)
-      stage1(input,output);
-    if (stage_num == 0)
-      meal_start(input,output);
+    var time = timer.getTime();
+    stages[stage_num](input,output);
   }
   function meal_start(input,output){
     if (word_present(input,look_at_menu)){
@@ -36,6 +36,10 @@
       stage_num = 1;
       return;
     }
+  }
+  function menu_look(input,output){
+    if (word_present(input,read))
+      output.innerHTML = "you can’t read the menu items because you’re so anxious"
   }
   function stage1(input,output){
     if (input == "order"){
@@ -63,22 +67,20 @@
  </head>
  <body>
  <h1>Test of system</h1>
- <div class="clock" style="margin:2em;"></div>
-
+ <div id ="timer" class="clock" style="margin:2em;"></div>
  <script type="text/javascript">
    var clock;
-
    $(document).ready(function() {
-
      // Instantiate a counter
      clock = new FlipClock($('.clock'), 10, {
        clockFace: 'Counter',
        autoStart: true,
        countdown: true
      });
-
+     timer = clock;
    });
  </script>
+
  <form action = ">"
   <fieldset>
   <label>Input: </label>
