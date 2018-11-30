@@ -9,13 +9,30 @@
  <script src="flipclock/flipclock.js"></script>
 
  <script type = "text/javascript">
+   jQuery.fn.shake = function() {
+    this.each(function(i) {
+        $(this).css({ "position": "relative" });
+        for (var x = 1; x <= 3; x++) {
+            $(this).animate({ left: -25 }, 10).animate({ left: 0 }, 50).animate({ left: 25 }, 10).animate({ left: 0 }, 50);
+            $(this).animate({ top: -25 }, 10).animate({ top: 0 }, 50).animate({ top: 25 }, 10).animate({ top: 0 }, 50);
+        }
+    });
+    return this;
+  }
   // from textBoxes.html
   var look_at_menu = ["menu","grab","look","gaze","stare","pick"];
   var order = ["order","ask","demand"];
-  var stage_num = 0;
-  var stages = [meal_start,stage1,stage2,stage3,menu_look];
+  var state_num = 0;
+  var states = [meal_start,stage1,stage2,stage3,menu_look];
   var concern = 0;
+  var input;
+  var output;
   var timer;
+  var time;
+  var narrator;
+  window.setInterval(function(){
+    $("#shake").shake();
+  }, 1000);
   function word_present(input,ref){
     for (str in input.split(" ")){
       if (ref.includes(input))
@@ -24,24 +41,25 @@
     return false;
   }
   function main(){
-    var input = document.getElementById("input").value.toLowerCase().trim();
-    var output = document.getElementById("output");
-    var narrator = document.getElementById("narrator");
-    var time = timer.getTime();
-    stages[stage_num](input,output);
+    input = document.getElementById("input").value.toLowerCase().trim();
+    output = document.getElementById("output");
+    narrator = document.getElementById("narrator");
+    time = timer.getTime();
+    states[state_num]();
   }
-  function meal_start(input,output){
+
+  function meal_start(){
     if (word_present(input,look_at_menu)){
       output.innerHTML = "show menu";
-      stage_num = 1;
+      state_num = 1;
       return;
     }
   }
-  function menu_look(input,output){
+  function menu_look(){
     if (word_present(input,read))
       output.innerHTML = "you can’t read the menu items because you’re so anxious"
   }
-  function stage1(input,output){
+  function stage1(){
     if (input == "order"){
       output.innerHTML = "order what?";
       return;
@@ -99,5 +117,8 @@
   <br>
   </fieldset>
  </form>
+ <div class="horizontally">
+ <div id="shake">fear2</div>
+ </div>
  </body>
 </html>
