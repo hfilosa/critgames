@@ -20,57 +20,77 @@
     return this;
   }
   // from textBoxes.html
-  var look_at_menu = ["menu","grab","look","gaze","stare","pick"];
-  var order = ["order","ask","demand"];
-  var state_num = 0;
-  var states = [meal_start,stage1,stage2,stage3,menu_look];
+  var words = new Map();
+  //Define all words here
+  words.set("look_menu",["menu","grab menu","look at menu","gaze at menu","stare at menu","pick up menu"]);
+  words.set("read",["read","comprehend","decipher"]);
+  words.set("order",["order","ask","demand"]);
+  words.set("ask",["ask","help","recommend","recommendation"]);
+  words.set("excuse",["excuse"])
+  //global states
+  var cur_state = meal_start;
   var concern = 0;
   var input;
   var output;
   var timer;
   var time;
   var narrator;
+  //Shake demonstration
   window.setInterval(function(){
-    $("#shake").shake();
+    if (concern>1)
+      $("#shake").shake();
   }, 1000);
-  function word_present(input,ref){
-    for (str in input.split(" ")){
-      if (ref.includes(input))
-        return true;
-    }
-    return false;
-  }
+
   function main(){
     input = document.getElementById("input").value.toLowerCase().trim();
     output = document.getElementById("output");
     narrator = document.getElementById("narrator");
     time = timer.getTime();
-    states[state_num]();
+    cur_state();
+  }
+
+  //return if word is present in some form in input
+  function word_present(input,word){
+    var synonyms = words.get(word);
+    for (n in synonyms){
+      if (input.includes(synonyms[n]))
+        return true;
+    }
+    return false;
+  }
+  //Getters & Setters
+  function narrate(text){
+    narrator.innerHTML = text;
+  }
+  function set_state(state){
+    cur_state = state;
   }
 
   function meal_start(){
-    if (word_present(input,look_at_menu)){
+    if (word_present(input,"look_menu")){
       output.innerHTML = "show menu";
-      state_num = 1;
+      set_state(menu_look);
       return;
     }
   }
   function menu_look(){
-    if (word_present(input,read))
-      output.innerHTML = "you can’t read the menu items because you’re so anxious"
+    if (word_present(input,"read"))
+      narrate("you can’t read the menu items because you’re so anxious");
+    else
+      set_state(stage1);
   }
   function stage1(){
     if (input == "order"){
-      output.innerHTML = "order what?";
+      narrate("order what?");
       return;
     }
-    if (word_present(input,order)){
-      output.innerHTML = "I don't think that's on the menu";
+    if (word_present(input,"order")){
+      narrate("I don't think that's on the menu");
       return;
     }
     if (input == "order nothing"){
       concern += 3;
-      output.innerHTML = "WHAT! Game over";
+      narrate("WHAT! Game over");
       return;
     }
   }
@@ -99,13 +119,11 @@
    });
  </script>
 
- <form action = ">"
+ <form action = "#" onsubmit="main()"
   <fieldset>
   <label>Input: </label>
   <br>
   <input type = "text"  id = "input" />
-  <br>
-  <input type = "button"  value = "enter input" onclick = "main()"/>
   <br>
   <label>Output: </label>
   <br>
