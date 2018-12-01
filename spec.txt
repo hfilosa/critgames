@@ -1,0 +1,42 @@
+// state of a scene
+scene
+    actions -[(Condition, Action)] // actions matched 
+            // with conditions to transition stage
+    img - String // the image6
+    sceneName - String // the name of the scene
+    **** timeInScene() // not in the JSON but available
+                    // to get the time in the scene
+
+// actions are used to do things and transition
+// they have no conditions associated with them
+Action
+    actionName - String //the name of the action
+    scene - String? // if there: 
+                    //      transition to scene
+                    // if not there: 
+                    //      some narration or 
+                    //      setting state or something
+    narration - String? // narration to give to the user
+    increments // what to increase globals by
+        hunger - Integer         
+        concern - Integer 
+        anxiety - Integer
+
+Condition
+    matchingWords -[String] // possible synonyms
+    priorActions - [String] // actions that must be 
+                // completed
+    notPriorActions - [String] // actions that must no be
+                // completed
+    globals // lo hi inclusive bounds
+        hunger
+            low
+            high
+        concern
+            low
+            high
+        anxiety 
+            low
+            high
+    timeRequirement //requirement on time 
+        //  passed in scene
