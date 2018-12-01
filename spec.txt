@@ -39,4 +39,4 @@ Condition
             low
             high
     timeRequirement //requirement on time 
-        //  passed in scene
+        //  passed in scene in seconds
