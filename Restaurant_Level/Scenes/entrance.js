@@ -1,4 +1,4 @@
-{
+var a = {
   "sceneName" : "Entrance",
   "img" : "restaurant_entrance.jpg",
   "actions" : [
@@ -22,4 +22,6 @@
     ]
   ]
 
-}
+};
+
+scenes[a.sceneName] = a;

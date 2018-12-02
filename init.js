@@ -1,0 +1,2 @@
+let scenes = {};
+let actions = {};
