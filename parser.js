@@ -29,10 +29,13 @@ function helpCalled()
 
 function changeScene(sceneToChangeTo)
 {
- // reset the time DONT FORGET 
+ // reset the time DONT FORGET
 }
 
 function onSubmit(str) {
+  console.log("Command "+str+" entered");
+  if (str == "undefined")
+    return;
   if (str == "?") {
     helpCalled();
   } else {
@@ -56,7 +59,19 @@ function getActionByName(action)
   return actions[action];
 }
 
-// executes an action 
+// return time elapsed in the current scene
+function getTimeInScene(){
+  let dt = new Date();
+  return (dt.getTime() - currScene.timeInScene)/1000;
+}
+
+// Set time entered of a scene
+function setTime(scene){
+  let dt = new Date();
+  currScene.timeInScene = dt.getTime();
+}
+
+// executes an action
 function executeAction(action)
 {
   // if action passed by name
@@ -69,6 +84,10 @@ function executeAction(action)
   {
     narrate(action.narration);
   }
+
+  if ("actionName" in action)
+    pastActions.push(action.actionName);
+
 
   if ("increments" in action)
   {
@@ -104,38 +123,66 @@ function checkCondition(command, cond)
 
   if ("notPriorActions" in cond)
   {
-    if (cond.priorActions.some(actionName => pastActions.includes(actionName)))
+    if (cond.notPriorActions.some(actionName => pastActions.includes(actionName)))
     {
       return false;
     }
   }
 
-  // if ("globals" in cond)
-  // {
-  //   let globals = cond.globals;
-  //   if ("hunger" in globals)
-  //   {
-  //     if ("low" in globals.hunger)
-  //     {
-  //       if 
-  //     }
-  //   }
-  // }
+  if ("globals" in cond)
+   {
+     let globals = cond.globals;
+     if ("hunger" in globals)
+     {
+      if (hunger>cond.globals.hunger.high || hunger<cond.globals.hunger.low)
+        return false;
+     }
+     if ("concern" in globals)
+     {
+      if (concern>cond.globals.concern.high || concern<cond.globals.concern.low)
+        return false;
+     }
+     if ("anxiety" in globals)
+     {
+      if (anxiety>cond.globals.anxiety.high || anxiety<cond.globals.anxiety.low)
+        return false;
+     }
+   }
+
+   if ("timeRequirement" in cond){
+     if (cond.timeRequirement > getTimeInScene())
+      return false;
+   }
   return true;
+}
+
+//Called periodically to check for any time based events that should fire
+function timedEvents(){
+  for (index in currScene.actions) {
+    let condition = currScene.actions[index][0];
+    let action = currScene.actions[index][1];
+    if (!("matchingWords" in condition)){
+      if (checkCondition("undefined", condition)) {
+        console.log("executing time based action: "+action);
+        executeAction(action);
+        return;
+      }
+    }
+  }
 }
 
 // parse a command that was stripped for actions
 // NOTE: does not handle "help" commands
 function parseCommand(command) {
-
+  console.log(currScene);
+  console.log(getTimeInScene());
   // go through each action and try to run
-  for (actionCondPair in currScene.actions) {
-    let condition = actionCondPair[0];
-    let action = actionCondPair[1];
+  for (index in currScene.actions) {
+    let condition = currScene.actions[index][0];
+    let action = currScene.actions[index][1];
 
-    if (checkCondition(command, conditon)) {
+    if (checkCondition(command, condition)) {
       executeAction(action);
-      pastActions.push(action.actionName);
       return;
     }
   }

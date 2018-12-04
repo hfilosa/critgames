@@ -5,6 +5,14 @@
  <title>test.html</title>
 
  <link rel="stylesheet" href="flipclock/flipclock.css">
+ <script src="init.js"></script>
+
+ <!-- include needed actions here -->
+ <script src="Restaurant_Level/Actions/lookAtMenu.js"></script>
+ <!-- include needed scenes here -->
+ <script src="Restaurant_Level/Scenes/entrance.js"></script>
+
+ <script src="parser.js"></script>
  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
  <script src="flipclock/flipclock.js"></script>
 
@@ -20,227 +28,19 @@
     return this;
   }
   // from textBoxes.html
-  var words = new Map();
-  //Define all words here
-  //The first word is the word you pass to word present to check
-  //if it is contained in the input
-  //The second part is an array of that word and all synonyms you want
-  words.set("yes",["yes","ok","accept","agree"]);
-  words.set("no",["no","nope","reject","disagree"]);
-  words.set("look at menu",["menu","grab menu","look at menu","gaze at menu","stare at menu","pick up menu"]);
-  words.set("read",["read","comprehend","decipher"]);
-  words.set("order",["order","ask","demand"]);
-  words.set("ask",["ask","help","recommend","recommendation"]);
-  words.set("excuse",["excuse","not hungry","feel sick","lie"]);
-  words.set("eat",["eat","take bite","eat food","consume","ingest"]);
-  words.set("look at restaurant",["look"]);
-  words.set("look at table",["look at table","gaze at table"]);
-  words.set("look at friends",["look at friends","gaze at friends"]);
-  words.set("chew",["chew","masticate","gnaw"]);
-  words.set("swallow",["swallow","devour","gulp down"]);
-  words.set("drink",["drink"]);
-  words.set("spit out food",["spit out food"]);
-  words.set("spit food into napkin",["spit food into napkin","spit out food into napkin"]);
-  words.set("spit out food",["spit out food"]);
-  words.set("throw up",["throw up","hurl","vomit","barf","stick fingers in throat","stick fingers down throat"]);
-  words.set("go to bathroom",["go to bathroom","excuse yourself","use bathroom","powder nose"]);
-  words.set("wait",["wait","stay","stand there"]);
-  words.set("return",["return","go back","leave","exit"]);
-  words.set("listen",["listen","concentrate"]);
-  words.set("talk",["talk","make conversation","converse"]);
-  words.set("cut up food",["cut up food","play with food","cut food"]);
-  words.set("hide food",["hide food"]);
-  words.set("diversion",["diversion","divert","fire","fire"]);
-  //actions for any time
-  var any_time_words = "punch friends, flip table, kill, die, run away, tell the truth, get help";
-  words.set("punch friends",["punch friends","hit friends","smack friends"]);
-  words.set("flip table",["flip table","throw table"]);
-  words.set("kill",["kill","murder"]);
-  words.set("run away",["run away",""]);
-  words.set("die",["die","play dead"]);
-  words.set("tell the truth",["tell the truth","tell truth","share problems"]);
-  words.set("get help",["get help","get better","recover"]);
-  //Whether that state has been entered before
-  var first_time = new Map();
-  first_time.set("menu_look",true);
-  first_time.set("meal_start",true);
-  //global states
-  var cur_state = meal_start;
-  var concern = 0;
-  var input;
-  var output;
-  var timer;
-  var time;
-  var narrator;
 
-  //Start the main function
-  window.setTimeout(function(){
-    main();
-  }, 10);
+  //check periodically for timed timed
+  window.setInterval(function(){
+    timedEvents();
+  }, 100);
+
+  setTime(currScene);
 
   function main(){
     input = document.getElementById("input").value.toLowerCase().trim();
     output = document.getElementById("output");
     narrator = document.getElementById("narrator");
-    time = timer.getTime();
-    console.log("current state "+cur_state);
-    console.log("concern level "+concern);
-    cur_state();
-  }
-
-  //Tell user what commands are avaliable for them rn if input==?
-  function help(options){
-    if (input == "?"){
-      output.innerHTML = "You can: "+options+", "+any_time_words;
-      return true;
-    }
-    return false;
-  }
-
-  //return true if word is present in some form in input
-  function word_present(word){
-    var synonyms = words.get(word);
-    for (n in synonyms){
-      if (input.includes(synonyms[n]))
-        return true;
-    }
-    return false;
-  }
-
-  //execute a given function after seconds given
-  function delayed_action(func,seconds){
-    window.setTimeout(function(){
-      func();
-    }, seconds*1000);
-    set_timer(seconds);
-  }
-
-  //Getters & Setters
-  function narrate(text){
-    narrator.innerHTML = text;
-  }
-  function set_state(state){
-    cur_state = state;
-  }
-  function set_timer(time){
-    timer.setTime(time);
-    timer.start();
-  }
-  //Increase concern, implement effects and check for game over
-  function increase_concern(c){
-    concern+=c;
-    switch (concern){
-      case (concern == 1):
-        window.setInterval(function(){$("#shake").shake();}, 1000);
-        return;
-      case (concern == 2):
-        return;
-      //Concern too high! game over
-      output.innerHTML = "Game over";
-    }
-  }
-
-  //Unrecognized input
-  function bad_input(){
-    if (input!="")
-      output.innerHTML = "I don't understand "+input;
-  }
-
-  function waiting_too_long(){
-    if (cur_state == meal_start)
-      narrate("Your friends are all looking at their menus. You should, too, or else they might think something is wrong");
-    window.setTimeout(function(){
-        if (cur_state == meal_start)
-          waiter_arrived();
-    }, 10000);
-    set_timer(10);
-  }
-  function meal_start(){
-    if (first_time.get("meal_start"))
-      delayed_action(waiting_too_long,10);
-    first_time.set("meal_start",false);
-    if (help("look at menu"))
-      return;
-    if (word_present("look at menu")){
-      output.innerHTML = "show menu";
-      narrate("");
-      set_state(menu_look);
-      return;
-    }
-    bad_input();
-  }
-
-  function waiter_arrived(){
-    narrate("The waiter has arrived. Your friends are waiting for you to order. But you shouldn’t. You shouldn’t order anything at all");
-    set_state(order_state);
-    delayed_action(fail_to_order,30);
-  }
-  function menu_look(){
-    if (first_time.get("menu_look"))
-      delayed_action(waiter_arrived,10);
-    first_time.set("menu_look",false);
-    if (help("read"))
-      return;
-    if (word_present("read")){
-      narrate("you can’t read the menu items because you’re so anxious");
-      return;
-    }
-    bad_input();
-  }
-
-  function fail_to_order(){
-    narrate("Your friends are a bit worried and are pressuring you to at least order a salad. Do you accept?");
-    increase_concern(1);
-    set_state(pressured_to_order);
-  }
-  function pressured_to_order(){
-    if (help("yes, no"))
-      return;
-    if (word_present("yes")){
-      set_state(stage1);
-      return;
-    }
-    if (word_present("no")){
-      increase_concern(3);
-      return;
-    }
-    bad_input();
-  }
-  function order_state(){
-    if (help("order, order _, order nothing"))
-      return;
-    if (input == "order"){
-      narrate("order what?");
-      return;
-    }
-    if (input == "order nothing"){
-      narrate("YOU CANNOT JUST ORDER NOTHING");
-      increase_concern(3);
-      return;
-    }
-    if (word_present("order")){
-      narrate("I don't think that's on the menu");
-      return;
-    }
-    if (word_present("ask")){
-      narrate("The waiter recommends the second option");
-      return;
-    }
-    if (word_present("excuse")){
-      narrate("Julia: 'That's what you said last time. Why don't you just get a salad?");
-      increase_concern(1);
-      set_state(pressured_to_order);
-      return;
-    }
-    bad_input();
-  }
-  function stage1(){
-  }
-  function stage2(){
-
-  }
-  function stage3(){
-
+    onSubmit(input);
   }
  </script>
 
@@ -280,5 +80,6 @@
  <div class="horizontally">
  <div id="shake">concern level</div>
  </div>
+ <img src="test3.png" alt="test2" style="width:80%;">
  </body>
 </html>
