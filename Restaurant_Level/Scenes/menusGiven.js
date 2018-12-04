@@ -1,5 +1,5 @@
 var a = {
-  "sceneName" : "MenusGiven",
+  "sceneName" : "menus given",
   "img" : "cleanTableWaiter.png",
   "actions" : [
     [
@@ -10,20 +10,20 @@ var a = {
         "timeRequirement" : 2
       }, {
         "narration" : "You look at the menu and frantically try to determine what is safe to eat. Your mental math abilities have improved significantly since you started counting calories, but it is still difficult under stress",
-        "actionName" : "Look at Menu",
-        "scene" : "LookingAtMenu",
+        "actionName" : "look at menu",
+        "scene" : "looking at menu",
       }
    ],
 
     [
       {
         "notPriorActions" : [
-          "Waiter Hands Out Menus",
+          "waiter hands out menus",
         ],
         "timeRequirement" : 2
       }, {
         "narration" : "The waiter hands out menus, according to his name tag he is Jeremy",
-        "actionName" : "Waiter Hands Out Menus",
+        "actionName" : "waiter hands out menus",
         "image" : "menuFarWaiter.png"
       }
     ],
@@ -31,11 +31,11 @@ var a = {
     [
       {
         "notPriorActions" : [
-          "Waiter Departs",
+          "waiter departs",
         ],
         "timeRequirement" : 6
       }, {
-        "actionName" : "Waiter Departs",
+        "actionName" : "waiter departs",
         "image" : "menuTable.png"
       }
     ],
@@ -43,13 +43,13 @@ var a = {
      [
        {
          "notPriorActions" : [
-           "Look at Menu",
-           "Hesistant to look at menu"
+           "look at menu",
+           "hesistate to look at menu"
          ],
          "timeRequirement" : 10
        }, {
          "narration" : "Your friends are all looking at their menus. You should, too, or else they might think something is wrong",
-         "actionName" : "Hesistant to look at menu"
+         "actionName" : "hesistate to look at menu"
        }
      ],
 

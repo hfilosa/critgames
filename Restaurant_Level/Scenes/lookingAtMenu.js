@@ -1,5 +1,5 @@
 var a = {
-  "sceneName" : "LookingAtMenu",
+  "sceneName" : "looking at menu",
   "img" : "menuClose.png",
   "actions" : [
     [
@@ -9,7 +9,7 @@ var a = {
         ]
       }, {
         "narration" : "There is something wrong with you. You are so anxious you can barely read. Your friends are going to find out if you don’t figure this out",
-        "actionName" : "Read Menu"
+        "actionName" : "read menu"
       }
    ],
 
@@ -17,8 +17,8 @@ var a = {
       {
         "timeRequirement" : 10,
       }, {
-        "actionName" : "Waiter Arrives",
-        "scene" : "Ordering"
+        "actionName" : "waiter arrives",
+        "scene" : "ordering"
       }
    ]
 
