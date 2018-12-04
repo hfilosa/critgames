@@ -20,6 +20,8 @@ Action
         hunger - Integer
         concern - Integer
         anxiety - Integer
+    image - String? // if there:
+                            change the displayed image
 
 Condition
     matchingWords -[String] // possible synonyms

@@ -2,13 +2,19 @@ let hunger = 0;
 let concern = 0;
 let anxiety = 0;
 
-let currScene = scenes["Entrance"];
+let currScene = scenes["Start"];
 
 let pastActions = []; // list of strings
 
 function narrate(str)
 {
   console.log(str);
+  narrator.innerHTML = str ;
+}
+
+function setImage(img){
+  console.log("Seting image to "+img);
+  imageWindow.src = "Restaurant_Level/images/"+img;
 }
 
 // narrates the call
@@ -29,7 +35,10 @@ function helpCalled()
 
 function changeScene(sceneToChangeTo)
 {
- // reset the time DONT FORGET
+  currScene = getSceneByName(sceneToChangeTo);
+  setImage(currScene.img);
+  setTime();
+  console.log(getTimeInScene());
 }
 
 function onSubmit(str) {
@@ -57,6 +66,14 @@ function getActionByName(action)
     console.log("ERROR EXPECTED ACTION AS STRING " + action);
   }
   return actions[action];
+}
+
+function getSceneByName(scene)
+{
+  if (typeof(scene) != "string"){
+    console.log("ERROR EXPECTED ACTION AS STRING " + scene);
+  }
+  return scenes[scene];
 }
 
 // return time elapsed in the current scene
@@ -96,6 +113,11 @@ function executeAction(action)
     hunger += increments.hunger == undefined ? 0 : increments.hunger;
     concern += increments.concern == undefined ? 0 : increments.concern;
     anxiety += increments.anxiety == undefined ? 0 : increments.anxiety;
+  }
+
+  if ("image" in action)
+  {
+    setImage(action.image);
   }
 
   if ("scene" in action)
@@ -163,7 +185,8 @@ function timedEvents(){
     let action = currScene.actions[index][1];
     if (!("matchingWords" in condition)){
       if (checkCondition("undefined", condition)) {
-        console.log("executing time based action: "+action);
+        console.log("executing time based action")
+        console.log(action);
         executeAction(action);
         return;
       }
@@ -175,7 +198,6 @@ function timedEvents(){
 // NOTE: does not handle "help" commands
 function parseCommand(command) {
   console.log(currScene);
-  console.log(getTimeInScene());
   // go through each action and try to run
   for (index in currScene.actions) {
     let condition = currScene.actions[index][0];

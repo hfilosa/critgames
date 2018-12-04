@@ -2,7 +2,7 @@
 <html lang = "en-US">
  <head>
  <meta charset = "UTF-8">
- <title>test.html</title>
+ <title>MICAH AND THE TERRIBLE, NO GOOD, VERY BAD DAY</title>
 
  <link rel="stylesheet" href="flipclock/flipclock.css">
  <script src="init.js"></script>
@@ -10,7 +10,10 @@
  <!-- include needed actions here -->
  <script src="Restaurant_Level/Actions/lookAtMenu.js"></script>
  <!-- include needed scenes here -->
- <script src="Restaurant_Level/Scenes/entrance.js"></script>
+ <script src="Restaurant_Level/Scenes/Start.js"></script>
+ <script src="Restaurant_Level/Scenes/lookingAtMenu.js"></script>
+ <script src="Restaurant_Level/Scenes/menusGiven.js"></script>
+ <script src="Restaurant_Level/Scenes/Ordering.js"></script>
 
  <script src="parser.js"></script>
  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
@@ -31,6 +34,8 @@
 
   //check periodically for timed timed
   window.setInterval(function(){
+    narrator = document.getElementById("narrator");
+    imageWindow = document.getElementById("image");
     timedEvents();
   }, 100);
 
@@ -38,15 +43,14 @@
 
   function main(){
     input = document.getElementById("input").value.toLowerCase().trim();
-    output = document.getElementById("output");
     narrator = document.getElementById("narrator");
+    imageWindow = document.getElementById("image");
     onSubmit(input);
   }
  </script>
 
  </head>
  <body>
- <h1>Test of system</h1>
  <div id ="timer" class="clock" style="margin:2em;"></div>
  <script type="text/javascript">
    var clock;
@@ -63,13 +67,10 @@
 
  <form action = "#" onsubmit="main()"
   <fieldset>
+  <img src="Restaurant_Level/images/cleanTable.png" id = "image" alt="test2" style="width:80%;">
   <label>Input: </label>
   <br>
   <input type = "text"  id = "input" />
-  <br>
-  <label>Output: </label>
-  <br>
-  <h1 id="output">output here</h1>
   <br>
   <label>Narrator: </label>
   <br>
@@ -80,6 +81,5 @@
  <div class="horizontally">
  <div id="shake">concern level</div>
  </div>
- <img src="test3.png" alt="test2" style="width:80%;">
  </body>
 </html>
