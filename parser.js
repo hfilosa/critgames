@@ -39,6 +39,7 @@ function onSubmit(str) {
     parseCommand(str);
   }
 }
+
 //return true if word is present in some form in input
 function word_present(command, synonyms){
   for (n in synonyms){
@@ -84,7 +85,6 @@ function executeAction(action)
     changeScene(action.scene);
   }
 }
-
 
 function checkCondition(command, cond)
 {

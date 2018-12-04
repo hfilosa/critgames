@@ -2,7 +2,7 @@
 scene
     actions -[(Condition, Action)] // actions matched 
             // with conditions to transition stage
-    img - String // the image6
+    img - String // the image
     sceneName - String // the name of the scene
     **** timeInScene() // not in the JSON but available
                     // to get the time in the scene
