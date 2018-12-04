@@ -2,7 +2,7 @@ let hunger = 0;
 let concern = 0;
 let anxiety = 0;
 
-let currScene = scenes["Start"];
+let currScene = scenes["start"];
 
 let pastActions = []; // list of strings
 
@@ -30,7 +30,7 @@ function helpCalled()
       input_options.push(action_condition.matchingWords[0]);
     }
   }
-  narrate("Your options are: " + input_options.join(", "));
+  narrate("You can: " + input_options.join(", "));
 }
 
 function changeScene(sceneToChangeTo)
@@ -52,10 +52,20 @@ function onSubmit(str) {
   }
 }
 //return true if word is present in some form in input
+//If synonym in synonyms has a '<' as first character, must be exact match
 function word_present(command, synonyms){
   for (n in synonyms){
-    if (command == synonyms[n])
-      return true;
+    var synonym = synonyms[n];
+    if (synonym.charAt[0] == '<'){
+      //must be an exact match
+      synonym = synonym.substring(1);
+      if (command == synonym)
+        return true;
+    }
+    else{
+      if (command.includes(synonym))
+        return true;
+    }
   }
   return false;
 }
@@ -91,6 +101,8 @@ function setTime(scene){
 // executes an action
 function executeAction(action)
 {
+  console.log("Executing action");
+  console.log(action);
   // if action passed by name
   if (typeof(action) == "string")
   {
@@ -186,7 +198,6 @@ function timedEvents(){
     if (!("matchingWords" in condition)){
       if (checkCondition("undefined", condition)) {
         console.log("executing time based action")
-        console.log(action);
         executeAction(action);
         return;
       }

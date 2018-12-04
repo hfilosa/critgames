@@ -5,7 +5,7 @@ var a = {
     [
       {
         "matchingWords" : [
-          "menu", "look", "get menu", "grab menu"
+          "look at menu","menu", "look", "get menu", "grab menu"
         ],
         "timeRequirement" : 2
       }, {

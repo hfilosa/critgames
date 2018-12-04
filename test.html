@@ -10,10 +10,14 @@
  <!-- include needed actions here -->
  <script src="Restaurant_Level/Actions/lookAtMenu.js"></script>
  <!-- include needed scenes here -->
- <script src="Restaurant_Level/Scenes/Start.js"></script>
+ <script src="Restaurant_Level/Scenes/start.js"></script>
  <script src="Restaurant_Level/Scenes/lookingAtMenu.js"></script>
  <script src="Restaurant_Level/Scenes/menusGiven.js"></script>
- <script src="Restaurant_Level/Scenes/Ordering.js"></script>
+ <script src="Restaurant_Level/Scenes/ordering.js"></script>
+ <script src="Restaurant_Level/Scenes/confrontedByFriends.js"></script>
+ <script src="Restaurant_Level/Scenes/meal1.js"></script>
+ <script src="Restaurant_Level/Scenes/meal2.js"></script>
+ <script src="Restaurant_Level/Scenes/meal3.js"></script>
 
  <script src="parser.js"></script>
  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
@@ -50,7 +54,9 @@
  </script>
 
  </head>
- <body>
+ <body style="background-color:#493e6bff;">
+
+  <!--
  <div id ="timer" class="clock" style="margin:2em;"></div>
  <script type="text/javascript">
    var clock;
@@ -64,17 +70,16 @@
      timer = clock;
    });
  </script>
+ -->
 
- <form action = "#" onsubmit="main()"
+ <form align="center" action = "#" onsubmit="main()"
   <fieldset>
-  <img src="Restaurant_Level/images/cleanTable.png" id = "image" alt="test2" style="width:80%;">
-  <label>Input: </label>
+  <img align="center" src="Restaurant_Level/images/cleanTable.png" id = "image" alt="test2" style="width:80%;">
   <br>
-  <input type = "text"  id = "input" />
+  <input style="background-color:gray;" type = "text"  id = "input" />
   <br>
-  <label>Narrator: </label>
   <br>
-  <h1 id="narrator">Narrator</h1>
+  <h1 id="narrator" align="center" style="color:white;font-family:Lucida Console;">Narrator</h1>
   <br>
   </fieldset>
  </form>
