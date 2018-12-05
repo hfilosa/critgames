@@ -22,7 +22,7 @@ String.prototype.replaceAt=function(index, replacement) {
 }
 
 function queerCommandPrompt()
-{ 
+{
   console.log("Queering command prompt");
   let inp = $("#command-prompt").val();
   console.log(inp);
@@ -71,6 +71,11 @@ function narrate(str)
 function setImage(img){
   console.log("Seting image to " + img);
   imageWindow.src = "Restaurant_Level/images/" + img;
+}
+
+function setMusic(music){
+  console.log("Seting music to " + music);
+  music.src = "Restaurant_Level/music/" + img;
 }
 
 // narrates the call
