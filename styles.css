@@ -1,0 +1,78 @@
+html, body {
+  margin: 0;
+  height: 100%;
+}
+
+.centered 
+{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+.content 
+{
+  width:80%;
+  height:100%;
+}
+
+.cover-parent 
+{
+  width: 100%;
+  height: 100%;
+}
+
+.input-text::before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  margin-right: -0.25em; /* Adjusts for spacing */
+}
+
+.input-text
+{
+  width:100%;
+  height:50%;
+  font-size: 2em;
+}
+
+#narrator 
+{
+  width: 100%;
+  height: 50%;
+  margin-top: 1%;
+}
+
+.bottom 
+{
+  margin-top: 1%;
+  height: 8%;
+  width: 100%;
+}
+
+#narrator 
+{
+  font-size: 2em;
+}
+
+.globals 
+{
+  float: left;
+  position:absolute;
+  font-size: 2em;
+}
+
+.stat-box
+{
+  display: inline;
+}
+
+.scene_img {
+  height: 80%;
+  width: 100%;
+  display:block;
+}

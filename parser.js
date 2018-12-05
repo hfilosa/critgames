@@ -6,6 +6,13 @@ let currScene = scenes["start"];
 
 let pastActions = []; // list of strings
 
+function setGlobals()
+{
+  $("#hunger-stat").innerHTML = hunger;
+  $("#concern-stat").innerHTML = concern;
+  $("#anxiety-stat").innerHTML = anxiety;
+}
+
 function narrate(str)
 {
   console.log(str);
@@ -13,8 +20,8 @@ function narrate(str)
 }
 
 function setImage(img){
-  console.log("Seting image to "+img);
-  imageWindow.src = "Restaurant_Level/images/"+img;
+  console.log("Seting image to " + img);
+  imageWindow.src = "Restaurant_Level/images/" + img;
 }
 
 // narrates the call
@@ -42,10 +49,10 @@ function changeScene(sceneToChangeTo)
 }
 
 function onSubmit(str) {
-  console.log("Command "+str+" entered");
+  console.log(`Command ${str} entered`);
   if (str == "undefined")
     return;
-  if (str == "?") {
+  if (str == "?" || str=="help") {
     helpCalled();
   } else {
     parseCommand(str);
@@ -94,7 +101,7 @@ function getTimeInScene(){
 }
 
 // Set time entered of a scene
-function setTime(scene){
+function setTime(){
   let dt = new Date();
   currScene.timeInScene = dt.getTime();
 }
@@ -116,8 +123,9 @@ function executeAction(action)
   }
 
   if ("actionName" in action)
-    pastActions.push(action.actionName);
-
+   {
+     pastActions.push(action.actionName);
+   }
 
   if ("increments" in action)
   {
@@ -126,6 +134,7 @@ function executeAction(action)
     hunger += increments.hunger == undefined ? 0 : increments.hunger;
     concern += increments.concern == undefined ? 0 : increments.concern;
     anxiety += increments.anxiety == undefined ? 0 : increments.anxiety;
+    setGlobals();
   }
 
   if ("image" in action)
@@ -168,17 +177,17 @@ function checkCondition(command, cond)
      let globals = cond.globals;
      if ("hunger" in globals)
      {
-      if (hunger>cond.globals.hunger.high || hunger<cond.globals.hunger.low)
+      if (hunger > globals.hunger.high || hunger < globals.hunger.low)
         return false;
      }
      if ("concern" in globals)
      {
-      if (concern>cond.globals.concern.high || concern<cond.globals.concern.low)
+      if (concern > globals.concern.high || concern < globals.concern.low)
         return false;
      }
      if ("anxiety" in globals)
      {
-      if (anxiety>cond.globals.anxiety.high || anxiety<cond.globals.anxiety.low)
+      if (anxiety > globals.anxiety.high || anxiety < globals.anxiety.low)
         return false;
      }
    }
@@ -192,6 +201,9 @@ function checkCondition(command, cond)
 
 //Called periodically to check for any time based events that should fire
 function timedEvents(){
+  if (!currScene)
+    return;
+
   for (index in currScene.actions) {
     let condition = currScene.actions[index][0];
     let action = currScene.actions[index][1];
@@ -219,7 +231,6 @@ function parseCommand(command) {
       return;
     }
   }
-
   // if we failed to parse execute the action Error
   executeAction("Error");
 }

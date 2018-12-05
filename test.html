@@ -5,6 +5,8 @@
  <title>MICAH AND THE TERRIBLE, NO GOOD, VERY BAD DAY</title>
 
  <link rel="stylesheet" href="flipclock/flipclock.css">
+ <link rel="stylesheet" type="text/css" href="reset.css">
+ <link rel="stylesheet" type="text/css" href="styles.css">
  <script src="init.js"></script>
 
  <!-- include needed actions here -->
@@ -44,11 +46,22 @@
   }, 100);
 
   setTime(currScene);
+  var narrator;
+  var imageWindow;
+  $(document).ready(function(){
 
-  function main(){
-    input = document.getElementById("input").value.toLowerCase().trim();
     narrator = document.getElementById("narrator");
     imageWindow = document.getElementById("image");
+    
+    $('form').on('submit', function(e){
+      e.preventDefault();
+      main();
+      $("#command-prompt").val("");
+    })
+  })
+
+  function main(){
+    input = $("#command-prompt").val().toLowerCase().trim();
     onSubmit(input);
   }
  </script>
@@ -71,20 +84,27 @@
    });
  </script>
  -->
-
- <form align="center" action = "#" onsubmit="main()"
-  <fieldset>
-  <img align="center" src="Restaurant_Level/images/cleanTable.png" id = "image" alt="test2" style="width:80%;">
-  <br>
-  <input style="background-color:gray;" type = "text"  id = "input" />
-  <br>
-  <br>
-  <h1 id="narrator" align="center" style="color:white;font-family:Lucida Console;">Narrator</h1>
-  <br>
-  </fieldset>
- </form>
- <div class="horizontally">
- <div id="shake">concern level</div>
+  <div class="centered">
+    <div class="content">
+      <!-- <div class="globals">
+        Anxiety <div id="anxiety-stat" class="stat-box">0</div>
+        <br>
+        Concern <div id="concern-stat" class="stat-box">0</div>
+        <br>
+        Hunger <div id="hunger-stat" class="stat-box">0</div>
+      </div> -->
+      <img src="Restaurant_Level/images/cleanTable.png" id = "image" alt="test2" class="scene_img">
+      <div class="bottom">    
+        <form align="center" id="submit-form" action = "#" class="cover-parent">
+          <input id="command-prompt" style="background-color:gray;" type = "text"  placeholder=">" class="input-text"/>
+          <h1 id="narrator" align="center" style="color:white;font-family:Lucida Console;"></h1>
+        </form>
+      </div>
+    </div>
  </div>
+
+ <!-- <div class="horizontally"> -->
+ <!-- <div id="shake">concern level</div> -->
+ <!-- </div> -->
  </body>
 </html>
