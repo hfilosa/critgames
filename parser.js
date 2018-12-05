@@ -41,7 +41,7 @@ function helpCalled()
     if ("matchingWords" in action_condition)
     {
       let action_str = action_condition.matchingWords[0];
-      action_str.replace("<", "");
+      action_str = action_str.replace("<", "");
       input_options.push(action_str);
     }
   }
