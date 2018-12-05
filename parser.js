@@ -6,6 +6,49 @@ let currScene = scenes["start"];
 
 let pastActions = []; // list of strings
 
+function randInt(low, high)
+{
+  return low + Math.floor(Math.random() * (high + 1));
+}
+
+function getRandomCharacter()
+{
+  let aCharCode = "a".charCodeAt(0);
+  return String.fromCharCode(aCharCode + randInt(0, 25))[0];
+}
+
+String.prototype.replaceAt=function(index, replacement) {
+  return this.substr(0, index) + replacement+ this.substr(index + replacement.length);
+}
+
+function queerCommandPrompt()
+{ 
+  console.log("Queering command prompt");
+  let inp = $("#command-prompt").val();
+  console.log(inp);
+  if (inp.length > 0)
+  {
+    let index = randInt(0, inp.length - 1);
+    let char = getRandomCharacter();
+    inp = inp.replaceAt(index, char);
+  }
+  console.log(inp);
+  $("#command-prompt").val(inp);
+}
+
+function blurImage()
+{
+  $("#image").toggleClass("blurred");
+  console.log("BLURRING!");
+  setTimeout(() => $("#image").toggleClass("blurred"), 1500);
+}
+
+window.setInterval(blurImage, 5 * 1000);
+
+
+// queer element
+window.setInterval(queerCommandPrompt, 10 * 1000);
+
 function setGlobals()
 {
   // $("#hunger-stat").innerHTML = hunger;

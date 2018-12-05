@@ -40,6 +40,16 @@ body
   color:whitesmoke;
 }
 
+.blurrable 
+{
+  transition: 1.5s -webkit-filter linear;
+}
+
+.blurred 
+{
+  filter: blur(5px);
+}
+
 #narrator 
 {
   width: 100%;
