@@ -1,5 +1,5 @@
 var a = {
-  "sceneName" : "ordering",
+  "sceneName" : "meal 1",
   "img" : "menuFarWaiter.png",
   "actions" : [
     [

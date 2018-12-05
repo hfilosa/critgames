@@ -12,18 +12,18 @@ var a = {
         "img" : "menuCloseWaiter.png"
       }
     ],
-
     [
       {
         "matchingWords" : [
           "stop", "down"
-        ]
+        ],
+        "imageRequired" : "menuCloseWaiter.png",
+        "priorActions": ["look at menu again"]
       }, {
-        "actionName" : "stop looking at menu",
+        "actionName" : "stop looking at menu again",
         "img" : "menuFarWaiter.png"
       }
     ],
-
     [
       {
         "matchingWords" : [
@@ -34,7 +34,6 @@ var a = {
         "narration" : "order what?"
       }
     ],
-
     [
       {
         "matchingWords" : [
@@ -46,7 +45,6 @@ var a = {
         "increments" : {"concern" : 3}
       }
     ],
-
     [
       {
         "matchingWords" : [
@@ -70,7 +68,7 @@ var a = {
       }, {
         "actionName" : "ask what to order",
         "narration" : "You ask what to order. The waiter recommends the second option",
-        "image" : "askWaiter.png"
+        "img" : "askWaiter.png"
       }
     ],
 
@@ -122,7 +120,6 @@ var a = {
        "increments" : {"concern" : 1}
      }
   ]
-
   ]
 };
 

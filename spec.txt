@@ -20,7 +20,7 @@ Action
         hunger - Integer
         concern - Integer
         anxiety - Integer
-    image - String? // if there:
+    img- String? // if there:
                             change the displayed image
 
 Condition
@@ -29,6 +29,7 @@ Condition
                 // completed
     notPriorActions - [String] // actions that must no be
                 // completed
+    imageRequired // what image is required to be there
     globals - Integer // low high inclusive bounds, must have low and high
         hunger
             low

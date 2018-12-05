@@ -15,8 +15,14 @@ function setGlobals()
 
 function narrate(str)
 {
-  console.log(str);
-  narrator.innerHTML = str ;
+  let to_write = str;
+  // array of things to narrate
+  if (typeof(str) == "object" && str.length > 0) {
+    to_write = str[0];
+    setTimeout(() => narrate(str.slice(1)), 5000);
+  }
+  console.log(to_write);
+  narrator.innerHTML = to_write;
 }
 
 function setImage(img){
@@ -34,7 +40,9 @@ function helpCalled()
     let action_condition = action[0];
     if ("matchingWords" in action_condition)
     {
-      input_options.push(action_condition.matchingWords[0]);
+      let action_str = action_condition.matchingWords[0];
+      action_str.replace("<", "");
+      input_options.push(action_str);
     }
   }
   narrate("You can: " + input_options.join(", "));
@@ -137,9 +145,9 @@ function executeAction(action)
     setGlobals();
   }
 
-  if ("image" in action)
+  if ("img" in action)
   {
-    setImage(action.image);
+    setImage(action.img);
   }
 
   if ("scene" in action)
@@ -167,6 +175,14 @@ function checkCondition(command, cond)
   if ("notPriorActions" in cond)
   {
     if (cond.notPriorActions.some(actionName => pastActions.includes(actionName)))
+    {
+      return false;
+    }
+  }
+
+  if ("imageRequired" in cond)
+  {
+    if (imageWindow.src != cond.imageRequired)
     {
       return false;
     }
@@ -231,6 +247,7 @@ function parseCommand(command) {
       return;
     }
   }
+
   // if we failed to parse execute the action Error
-  executeAction("Error");
+  narrate(`"${command}" is not a valid command<br> type "help" for help`);
 }

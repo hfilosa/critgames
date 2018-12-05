@@ -9,13 +9,16 @@ var a = {
         ],
         "timeRequirement" : 2
       }, {
-        "narration" : "You look at the menu and frantically try to determine what is safe to eat. Your mental math abilities have improved significantly since you started counting calories, but it is still difficult under stress",
+        "narration" : 
+        [
+         "While your friends are chatting about TV, you look at the menu. None of this can fit into your calories for today.There aren’t even sides that are small enough…",
+         "You ask your friend to split something with you, but she says she’s starving. You’ll have to order for yourself." 
+        ],
         "actionName" : "look at menu",
         "scene" : "looking at menu",
       }
    ],
-
-    [
+   [
       {
         "notPriorActions" : [
           "waiter hands out menus",
@@ -48,7 +51,7 @@ var a = {
          ],
          "timeRequirement" : 10
        }, {
-         "narration" : "Your friends are all looking at their menus. You should, too, or else they might think something is wrong",
+         "narration" : "Your friends are all looking at their menus. You should, too, or else they might think something is wrongCome on, your friends are all looking at their menus. At least pretend to look, you don’t want them to think you’re weird.",
          "actionName" : "hesistate to look at menu"
        }
      ],
