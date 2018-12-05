@@ -243,6 +243,9 @@ function parseCommand(command) {
     let action = currScene.actions[index][1];
 
     if (checkCondition(command, condition)) {
+      console.log("condition passed");
+      console.log(condition);
+      console.log("---");
       executeAction(action);
       return;
     }
