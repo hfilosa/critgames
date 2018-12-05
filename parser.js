@@ -43,7 +43,7 @@ function blurImage()
   setTimeout(() => $("#image").toggleClass("blurred"), 1500);
 }
 
-window.setInterval(blurImage, 5 * 1000);
+window.setInterval(blurImage, 15 * 1000);
 
 
 // queer element
