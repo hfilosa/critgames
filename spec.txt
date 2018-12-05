@@ -22,6 +22,9 @@ Action
         anxiety - Integer
     img- String? // if there:
                             change the displayed image
+    music- String? // if there:
+                            change the music playing
+
 
 Condition
     matchingWords -[String] // possible synonyms

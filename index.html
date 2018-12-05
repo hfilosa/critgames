@@ -42,6 +42,7 @@
   window.setInterval(function(){
     narrator = document.getElementById("narrator");
     imageWindow = document.getElementById("image");
+    music = document.getElementById("music");
     timedEvents();
   }, 100);
 
@@ -52,7 +53,8 @@
 
     narrator = document.getElementById("narrator");
     imageWindow = document.getElementById("image");
-    
+    music = document.getElementById("music");
+
     $('form').on('submit', function(e){
       e.preventDefault();
       main();
@@ -95,7 +97,7 @@
         Hunger <div id="hunger-stat" class="stat-box">0</div>
       </div> -->
       <img src="Restaurant_Level/images/cleanTable.png" id = "image" alt="test2" class="scene_img blurrable">
-      <div class="bottom">    
+      <div class="bottom">
         <form align="center" id="submit-form" action = "#" class="cover-parent">
           <input id="command-prompt" style="background-color:gray;" type = "text"  placeholder=">" class="input-text"/>
           <h1 id="narrator" align="center" style="color:white;font-family:Lucida Console;"></h1>
@@ -103,6 +105,13 @@
       </div>
     </div>
  </div>
+
+ <!-- The iframe is just here to deal with chrome weirdness were it otherwis won't let the music autoplay -->
+ <iframe src="Restaurant_Level/music/RestaurantMusic.wav" allow="autoplay" id="audio" style="display:none"></iframe>
+ <audio autoplay loop>
+  <source id="music" src="Restaurant_Level/music/RestaurantMusic.wav" type="audio/wav">
+  Your browser does not support the audio element.
+</audio>
 
  <!-- <div class="horizontally"> -->
  <!-- <div id="shake">concern level</div> -->
