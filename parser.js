@@ -295,5 +295,5 @@ function parseCommand(command) {
   }
 
   // if we failed to parse execute the action Error
-  narrate(`"${command}" is not a valid command<br> type "help" for help`);
+  narrate(`I don't know what "${command}" means.`);
 }
