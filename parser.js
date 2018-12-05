@@ -8,9 +8,9 @@ let pastActions = []; // list of strings
 
 function setGlobals()
 {
-  $("#hunger-stat").innerHTML = hunger;
-  $("#concern-stat").innerHTML = concern;
-  $("#anxiety-stat").innerHTML = anxiety;
+  // $("#hunger-stat").innerHTML = hunger;
+  // $("#concern-stat").innerHTML = concern;
+  // $("#anxiety-stat").innerHTML = anxiety;
 }
 
 function narrate(str)
