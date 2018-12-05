@@ -30,10 +30,26 @@ var a = {
           "<order"
         ]
       }, {
-        "actionName" : "order?",
+        "actionName" : "order1",
         "narration" : "order what?"
       }
     ],
+
+    [
+      {
+        "matchingWords" : [
+          "<order"
+        ],
+        "priorActions" : [
+          "order1"
+        ]
+      }, {
+        "actionName" : "order2",
+        "narration" : "Okay, okay, you order some food - but you panic and pick the first thing you see. It’s way too much, but maybe you can still figure this out",
+        "scene" : "meal 1"
+      }
+    ],
+
     [
       {
         "matchingWords" : [
@@ -56,7 +72,8 @@ var a = {
       }, {
         "actionName" : "order second option",
         "narration" : "The waiter scribbles down your order. At least that ordeal is over",
-        "scene" : "meal1"
+        "scene" : "meal 1",
+        "increments" : {"anxiety" : 1}
       }
     ],
 
@@ -90,7 +107,7 @@ var a = {
         ],
       }, {
         "actionName" : "give excuse",
-        "narration" : "Your friends aren’t buying it. That’s what you said last time. 'Why don't you just order the soup?'",
+        "narration" : "Your friends aren’t buying it - That’s what you said last time. 'Why don't you just order the soup?' Ashley says",
         "scene" : "confronted by friends",
         "increments" : {"concern" : 1}
       }
@@ -102,7 +119,7 @@ var a = {
         ],
         "timeRequirement" : 1
       }, {
-        "narration" : "You can’t do this. You should just make up an excuse.",
+        "narration" : "Oh God, he wants your order. Make something up, or do something - quick.",
         "actionName" : "ordering intro",
       }
    ],
@@ -115,7 +132,7 @@ var a = {
        "timeRequirement" : 30
      }, {
        "actionName" : "take too long",
-       "narration" : "'What's taking you so long? Why don't you just order the soup?'",
+       "narration" : "Your friends and the waiter are awkwardly waiting. After a long silence, he says that the soup is pretty popular, 'would you like a bowl?'",
        "scene" : "confronted by friends",
        "increments" : {"concern" : 1}
      }

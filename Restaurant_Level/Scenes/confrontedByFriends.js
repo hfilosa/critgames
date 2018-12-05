@@ -9,7 +9,7 @@ var a = {
         ],
         "timeRequirement" : 15
       }, {
-        "narration" : "You sit there and refuse to answer. Your friends are extremely concerned.",
+        "narration" : "You sit there and refuse to answer. That was rather rude, wasn’t it?",
         "actionName" : "fail to answer",
         "increments" : {"concern" : 2}
       }
@@ -33,12 +33,12 @@ var a = {
          "yes","agree","soup","order","ok"
        ]
      }, {
-       "narration" : "You give in and agree to order",
+       "narration" : "You give in and Your friends order too. You really shouldn’t eat that soup, you know - it’s almost all carbs. This isn’t going to go so well...",
        "actionName" : "answer yes",
        "scene" : {"concern" : 1}
      }
    ]
-   
+
  ]
 };
 
