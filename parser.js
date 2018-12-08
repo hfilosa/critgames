@@ -21,6 +21,25 @@ String.prototype.replaceAt=function(index, replacement) {
   return this.substr(0, index) + replacement+ this.substr(index + replacement.length);
 }
 
+function getBlurTimeout()
+{
+  let seconds = 15;
+  seconds -= 2 * anxiety;
+  seconds -= 3 * hunger;
+  seconds = Math.max(seconds, 3);
+  // console.log("blur timeout is ", seconds);
+  return seconds * 1000;
+}
+
+function getCommandPromptTimeout()
+{
+  let seconds = 10;
+  seconds -= 2 * anxiety;
+  seconds -= hunger;
+  seconds = Math.max(seconds, 3);
+  return seconds * 1000;
+}
+
 function queerCommandPrompt()
 {
   console.log("Queering command prompt");
@@ -34,20 +53,34 @@ function queerCommandPrompt()
   }
   console.log(inp);
   $("#command-prompt").val(inp);
+
+  // start again 
+  setTimeout(queerCommandPrompt, getCommandPromptTimeout());
 }
+
 
 function blurImage()
 {
   $("#image").toggleClass("blurred");
   console.log("BLURRING!");
   setTimeout(() => $("#image").toggleClass("blurred"), 1500);
+
+  // start again
+  setTimeout(blurImage, getBlurTimeout());
 }
 
-window.setInterval(blurImage, 15 * 1000);
+setTimeout(blurImage, getBlurTimeout());
+setTimeout(queerCommandPrompt, getCommandPromptTimeout());
+ 
+// ssetTimeout(blurImage, 15 * 1000);
+
+// etTimeout(queerCommandPrompt, 15 * 1000);
+// window.setInterval(blurImage, 15 * 1000);
 
 
 // queer element
-window.setInterval(queerCommandPrompt, 10 * 1000);
+// window.setInterval(queerCommandPrompt, 10 * 1000);
+
 
 function setGlobals()
 {
