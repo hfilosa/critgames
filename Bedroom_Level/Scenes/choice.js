@@ -8,7 +8,6 @@ var a = {
           "yes","ok","agree"
         ],
       }, {
-        "actionName" : "start",
         "music" : "RestaurantMusic.wav",
         "narration" : "You say yes to them for some stupid reason. Well, your parents have been noticing your eating habits lately. Good idea to get out of the house.",
         "scene" : "start",

@@ -21,7 +21,7 @@ var a = {
          "no","nope","refuse"
        ]
      }, {
-       "narration" : "You refuse. 'You're just going to eat nothing? See, I told you Micah needed help'",
+       "narration" : "You refuse. 'You're just going to eat nothing? See, I told you Micah needed help.'",
        "actionName" : "answer no",
        "increments" : {"concern" : 2}
      }

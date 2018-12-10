@@ -25,7 +25,7 @@ var a = {
         ],
         "timeRequirement" : 2
       }, {
-        "narration" : "The waiter hands out menus, according to his name tag he's Jeremy",
+        "narration" : "The waiter hands out menus, according to his name tag he's Jeremy.",
         "actionName" : "waiter hands out menus",
         "img" : "menuFarWaiter.png"
       }

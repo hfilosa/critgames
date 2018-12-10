@@ -111,7 +111,9 @@ function setImage(img){
 
 function setMusic(music){
   console.log("Setting music to " + music);
-  music.src = level+"/music/" + music;
+  document.getElementById("music").pause();
+  document.getElementById("music").src = level+"/music/" + music;
+  document.getElementById("music").load();
   document.getElementById("music").play();
 }
 
