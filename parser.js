@@ -2,7 +2,10 @@ let hunger = 0;
 let concern = 0;
 let anxiety = 0;
 
-let currScene = scenes["start"];
+//what level we are on
+let level = "Bedroom_Level";
+
+let currScene = scenes["title card"];
 
 let pastActions = []; // list of strings
 
@@ -103,12 +106,13 @@ function narrate(str)
 
 function setImage(img){
   console.log("Seting image to " + img);
-  imageWindow.src = "Restaurant_Level/images/" + img;
+  imageWindow.src = level+"/images/" + img;
 }
 
 function setMusic(music){
-  console.log("Seting music to " + music);
-  music.src = "Restaurant_Level/music/" + img;
+  console.log("Setting music to " + music);
+  music.src = level+"/music/" + music;
+  document.getElementById("music").play();
 }
 
 // narrates the call
@@ -206,6 +210,10 @@ function executeAction(action)
     action = getActionByName(action);
   }
 
+  if ("level" in action){
+    level = action.level;
+  }
+
   if ("narration" in action)
   {
     narrate(action.narration);
@@ -229,6 +237,10 @@ function executeAction(action)
   if ("scene" in action)
   {
     changeScene(action.scene);
+  }
+
+  if ("music" in action){
+    setMusic(action.music);
   }
 }
 

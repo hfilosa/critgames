@@ -4,7 +4,6 @@
  <meta charset = "UTF-8">
  <title>MICAH AND THE TERRIBLE, NO GOOD, VERY BAD DAY</title>
 
- <link rel="stylesheet" href="flipclock/flipclock.css">
  <link rel="stylesheet" type="text/css" href="reset.css">
  <link rel="stylesheet" type="text/css" href="styles.css">
  <script src="init.js"></script>
@@ -21,9 +20,13 @@
  <script src="Restaurant_Level/Scenes/meal2.js"></script>
  <script src="Restaurant_Level/Scenes/meal3.js"></script>
 
+ <script src="Bedroom_Level/Scenes/titleCard.js"></script>
+ <script src="Bedroom_Level/Scenes/monologue.js"></script>
+ <script src="Bedroom_Level/Scenes/choice.js"></script>
+
+
  <script src="parser.js"></script>
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
- <script src="flipclock/flipclock.js"></script>
 
  <script type = "text/javascript">
    jQuery.fn.shake = function() {
@@ -60,8 +63,8 @@
       main();
       $("#command-prompt").val("");
     })
-    
-   
+
+
   })
 
   function main(){
@@ -74,21 +77,6 @@
  </head>
  <body>
 
-  <!--
- <div id ="timer" class="clock" style="margin:2em;"></div>
- <script type="text/javascript">
-   var clock;
-   $(document).ready(function() {
-     // Instantiate a counter
-     clock = new FlipClock($('.clock'), 10, {
-       clockFace: 'Counter',
-       autoStart: true,
-       countdown: true
-     });
-     timer = clock;
-   });
- </script>
- -->
   <div class="centered">
     <div class="content">
       <!-- <div class="globals">
@@ -98,7 +86,7 @@
         <br>
         Hunger <div id="hunger-stat" class="stat-box">0</div>
       </div> -->
-      <img src="Restaurant_Level/images/cleanTable.png" id = "image" alt="test2" class="scene_img blurrable">
+      <img src="Bedroom_Level/images/MICAH.png" id = "image" alt="title" class="scene_img blurrable">
       <div class="bottom">
         <form autocomplete="off" align="center" id="submit-form" action = "#" class="cover-parent">
           <input id="command-prompt" style="background-color:gray;" type = "text"  placeholder=">" class="input-text"/>
@@ -108,11 +96,11 @@
     </div>
  </div>
 
- <!-- The iframe is just here to deal with chrome weirdness were it otherwis won't let the music autoplay -->
- <iframe src="Restaurant_Level/music/RestaurantMusic.wav" allow="autoplay" id="audio" style="display:none"></iframe>
+ <!-- The iframe is just here to deal with chrome weirdness were it otherwis won't let the music autoplay
+ <iframe src="Restaurant_Level/music/RestaurantMusic.wav" allow="autoplay" id="audio" style="display:none"></iframe> -->
 
- <audio autoplay loop>
-  <source id="music" src="Restaurant_Level/music/RestaurantMusic.wav" type="audio/wav">
+ <audio loop id="music">
+  <source src="Bedroom_Level/music/intro.wav" type="audio/wav">
   Your browser does not support the audio element.
 </audio>
 
