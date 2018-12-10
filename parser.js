@@ -54,7 +54,7 @@ function queerCommandPrompt()
   console.log(inp);
   $("#command-prompt").val(inp);
 
-  // start again 
+  // start again
   setTimeout(queerCommandPrompt, getCommandPromptTimeout());
 }
 
@@ -69,9 +69,16 @@ function blurImage()
   setTimeout(blurImage, getBlurTimeout());
 }
 
-setTimeout(blurImage, getBlurTimeout());
-setTimeout(queerCommandPrompt, getCommandPromptTimeout());
- 
+function increment_stats(action){
+  let increments = action.increments;
+
+  hunger += increments.hunger == undefined ? 0 : increments.hunger;
+  concern += increments.concern == undefined ? 0 : increments.concern;
+  anxiety += increments.anxiety == undefined ? 0 : increments.anxiety;
+  setTimeout(blurImage, getBlurTimeout());
+  setTimeout(queerCommandPrompt, getCommandPromptTimeout());
+}
+
 // ssetTimeout(blurImage, 15 * 1000);
 
 // etTimeout(queerCommandPrompt, 15 * 1000);
@@ -81,13 +88,6 @@ setTimeout(queerCommandPrompt, getCommandPromptTimeout());
 // queer element
 // window.setInterval(queerCommandPrompt, 10 * 1000);
 
-
-function setGlobals()
-{
-  // $("#hunger-stat").innerHTML = hunger;
-  // $("#concern-stat").innerHTML = concern;
-  // $("#anxiety-stat").innerHTML = anxiety;
-}
 
 function narrate(str)
 {
@@ -218,12 +218,7 @@ function executeAction(action)
 
   if ("increments" in action)
   {
-    let increments = action.increments;
-
-    hunger += increments.hunger == undefined ? 0 : increments.hunger;
-    concern += increments.concern == undefined ? 0 : increments.concern;
-    anxiety += increments.anxiety == undefined ? 0 : increments.anxiety;
-    setGlobals();
+    increment_stats(action);
   }
 
   if ("img" in action)
