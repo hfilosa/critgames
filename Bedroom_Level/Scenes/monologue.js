@@ -91,7 +91,7 @@ var a = {
         ]
       }, {
         "actionName" : "7",
-        "narration" : "Well, it’s s l i g h t l y more difficult than that. It’s not like you can just go and eat n0rmally.",
+        "narration" : "<em>Well, it’s s l i g h t l y more difficult than that. It’s not like you can just go and eat n0rmally.</em>",
         "img" : "micahmirror.png"
       }
     ],
@@ -187,7 +187,7 @@ var a = {
         ]
       }, {
         "actionName" : "16",
-        "narration" : "d 0 w n",
+        "narration" : "<em>d 0 w n</em>",
         "img" : "distortionagain.png"
       }
     ],

@@ -43,7 +43,7 @@ var a = {
        ]
      },
      {
-       "narration" : "You really shouldn’t do that. Y0u can’t trust them to und3rstand. They w0n’t say the right th1ng.",
+       "narration" : "<em>You really shouldn’t do that. Y0u can’t trust them to und3rstand. They w0n’t say the right th1ng.</em>",
      }
    ],
 
@@ -54,7 +54,7 @@ var a = {
        ]
      },
      {
-       "narration" : "You can’t. Is it worth it, if it means you’ll get fat? You couldn’t l1v3 w1th0ut m3.",
+       "narration" : "<em>You can’t. Is it worth it, if it means you’ll get fat? You couldn’t l1v3 w1th0ut m3.</em>",
      }
    ],
 
