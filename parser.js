@@ -7,6 +7,8 @@ let level = "Bedroom_Level";
 
 let currScene = scenes["title card"];
 
+let restart = ["try again", "restart"];
+
 let pastActions = []; // list of strings
 
 function randInt(low, high)
@@ -28,7 +30,6 @@ function getBlurTimeout()
 {
   let seconds = 15;
   seconds -= 2 * anxiety;
-  seconds -= 3 * hunger;
 
   // capping blur at min 3 seconds
   seconds = randInt(seconds,15);
@@ -39,8 +40,8 @@ function getBlurTimeout()
 function getCommandPromptTimeout()
 {
   let seconds = 10;
-  seconds -= 2 * anxiety;
-  seconds -= hunger;
+  seconds -= 3 * anxiety;
+  seconds -= 2 * concern;
   seconds = randInt(seconds,10);
   // capping buffer change at min 3 seconds
   seconds = Math.max(seconds, 3);
@@ -50,8 +51,8 @@ function getCommandPromptTimeout()
 function getShakeTimeout()
 {
   let seconds = 20;
-  seconds -= 5 * anxiety;
-  seconds -= 3 * hunger;
+  seconds -= 5 * concern;
+  seconds -= 2 * concern;
   // capping buffer change at min 3 seconds
   seconds = randInt(seconds,20);
   seconds = Math.max(seconds, 3);
@@ -75,7 +76,8 @@ function queerCommandPrompt()
   $("#command-prompt").val(inp);
 
   // start again
-  setTimeout(queerCommandPrompt, getCommandPromptTimeout());
+  if (concern!= 0 && anxiety != 0 )
+    commandTimeout = setTimeout(queerCommandPrompt, getCommandPromptTimeout());
 }
 
 
@@ -86,15 +88,16 @@ function blurImage()
   setTimeout(() => $("#image").toggleClass("blurred"), 1500);
 
   // start again
-  setTimeout(blurImage, getBlurTimeout());
+  if (anxiety != 0 )
+    blurImage = setTimeout(blurImage, getBlurTimeout());
 }
 
 function shakeImage()
 {
   $("#image").shake();
   console.log("Shaking!");
-
-  setTimeout(shakeImage, getShakeTimeout());
+  if (concern!= 0 && anxiety != 0 )
+    shakeTimeout = setTimeout(shakeImage, getShakeTimeout());
 }
 
 function increment_stats(action){
@@ -104,9 +107,17 @@ function increment_stats(action){
   concern += increments.concern == undefined ? 0 : increments.concern;
   anxiety += increments.anxiety == undefined ? 0 : increments.anxiety;
 
-  setTimeout(blurImage, getBlurTimeout());
-  setTimeout(queerCommandPrompt, getCommandPromptTimeout());
-  setTimeout(shakeImage, getShakeTimeout());
+  commandTimeout = setTimeout(queerCommandPrompt, getCommandPromptTimeout());
+  blurImage = setTimeout(blurImage, getBlurTimeout());
+  shakeTimeout = setTimeout(shakeImage, getShakeTimeout());
+}
+
+function reset_globals(){
+  console.log("reset globals");
+  hunger = 0;
+  anxiety = 0;
+  concern = 0;
+  pastActions = [];
 }
 
 // ssetTimeout(blurImage, 15 * 1000);
@@ -177,6 +188,8 @@ function helpCalled()
 function changeScene(sceneToChangeTo)
 {
   currScene = getSceneByName(sceneToChangeTo);
+  console.log(sceneToChangeTo);
+  console.log(currScene);
   if ("img" in currScene)
     setImage(currScene.img);
   setTime();
@@ -373,6 +386,9 @@ function parseCommand(command) {
     let action = currScene.actions[index][1];
 
     if (checkCondition(command, condition)) {
+      if (restart.includes(command)){
+        reset_globals();
+      }
       console.log("condition passed");
       console.log(condition);
       console.log("---");

@@ -36,7 +36,7 @@ var a = {
         "success end"
       ],
       "timeRequirement" : 5,
-      "globals" : {"concern": {"low" : 0, "high" : 2}
+      "globals" : {"concern": {"low" : 0, "high" : 2},
                    "anxiety": {"low" : 0, "high" : 2}
                   }
     },
@@ -45,9 +45,23 @@ var a = {
       "img" : "!!",
       "actionName" : "success end"
     }
+  ],
+
+  [
+    {
+      "matchingWords" : [
+        "try again","restart"
+      ],
+      "timeRequirement" : 5,
+    },
+    {
+      "narration" : "",
+      "scene" : "choice",
+      "level" : "Bedroom_Level",
+      "music" : "intro.wav"
+    }
   ]
 
   ]
 };
-
 scenes[a.sceneName] = a;

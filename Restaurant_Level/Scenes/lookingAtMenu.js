@@ -21,7 +21,7 @@ var a = {
       }
    ],
 
-   [[
+   [
      {
        "matchingWords" : [
          "flip table", "flip", "throw"
