@@ -1,0 +1,69 @@
+var a = {
+  "sceneName" : "name the scene",
+  "img" : "imageToShowByDefault.png",
+  "actions" : [
+    [
+      {
+        "matchingWords" : [
+          "this is displayed by help","synonym1", "synonym2", "<Must be an exact match"
+        ],
+        "timeRequirement" : 2,
+        "priorActions" : [
+          "name of action", "action2"
+        ],
+        "notPriorActions" : [
+          "can't have happened", "action2"
+        ]
+      },
+      {
+        "actionName" : "name of the action",
+        "narration" :
+        [
+         "This will be said to the user",
+         "with a 5 second delay in between",
+         "each item"
+        ],
+        "narration" : "this will just be said once to the user",
+        "scene" : "transition to this scene",
+        "img" : "imageName.png",
+        "increments" : {
+          "hunger" : 1,
+          "anxiety" : 1,
+          "concern" : 1
+        }
+      }
+   ],
+   [
+     {
+       "matchingWords" : [
+         "this is displayed by help","synonym1", "synonym2", "<Must be an exact match"
+       ],
+       "timeRequirement" : 2,
+       "priorActions" : [
+         "name of action", "action2"
+       ],
+       "notPriorActions" : [
+         "can't have happened", "action2"
+       ]
+     },
+     {
+       "actionName" : "name of the action",
+       "narration" :
+       [
+        "This will be said to the user",
+        "with a 5 second delay in between",
+        "each item"
+       ],
+       "narration" : "this will just be said once to the user",
+       "scene" : "transition to this scene",
+       "img" : "imageName.png",
+       "increments" : {
+         "hunger" : 1,
+         "anxiety" : 1,
+         "concern" : 1
+       }
+     }
+  ]
+};
+
+scenes[a.sceneName] = a;

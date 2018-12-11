@@ -2,7 +2,10 @@ let hunger = 0;
 let concern = 0;
 let anxiety = 0;
 
-let currScene = scenes["start"];
+//what level we are on
+let level = "Bedroom_Level";
+
+let currScene = scenes["title card"];
 
 let pastActions = []; // list of strings
 
@@ -68,7 +71,7 @@ function queerCommandPrompt()
   console.log(inp);
   $("#command-prompt").val(inp);
 
-  // start again 
+  // start again
   setTimeout(queerCommandPrompt, getCommandPromptTimeout());
 }
 
@@ -87,14 +90,22 @@ function shakeImage()
 {
   $("#image").shake();
   console.log("Shaking!");
+
+  setTimeout(shakeImage, getShakeTimeout());
+}
+ 
+function increment_stats(action){
+  let increments = action.increments;
+
+  hunger += increments.hunger == undefined ? 0 : increments.hunger;
+  concern += increments.concern == undefined ? 0 : increments.concern;
+  anxiety += increments.anxiety == undefined ? 0 : increments.anxiety;
+
+  setTimeout(blurImage, getBlurTimeout());
+  setTimeout(queerCommandPrompt, getCommandPromptTimeout());
   setTimeout(shakeImage, getShakeTimeout());
 }
 
-setTimeout(blurImage, getBlurTimeout());
-setTimeout(queerCommandPrompt, getCommandPromptTimeout());
-setTimeout(shakeImage, getShakeTimeout());
-
- 
 // ssetTimeout(blurImage, 15 * 1000);
 
 // etTimeout(queerCommandPrompt, 15 * 1000);
@@ -104,13 +115,6 @@ setTimeout(shakeImage, getShakeTimeout());
 // queer element
 // window.setInterval(queerCommandPrompt, 10 * 1000);
 
-
-function setGlobals()
-{
-  // $("#hunger-stat").innerHTML = hunger;
-  // $("#concern-stat").innerHTML = concern;
-  // $("#anxiety-stat").innerHTML = anxiety;
-}
 
 function narrate(str)
 {
@@ -126,12 +130,15 @@ function narrate(str)
 
 function setImage(img){
   console.log("Seting image to " + img);
-  imageWindow.src = "Restaurant_Level/images/" + img;
+  imageWindow.src = level+"/images/" + img;
 }
 
 function setMusic(music){
-  console.log("Seting music to " + music);
-  music.src = "Restaurant_Level/music/" + img;
+  console.log("Setting music to " + music);
+  document.getElementById("music").pause();
+  document.getElementById("music").src = level+"/music/" + music;
+  document.getElementById("music").load();
+  document.getElementById("music").play();
 }
 
 // narrates the call
@@ -229,6 +236,10 @@ function executeAction(action)
     action = getActionByName(action);
   }
 
+  if ("level" in action){
+    level = action.level;
+  }
+
   if ("narration" in action)
   {
     narrate(action.narration);
@@ -241,12 +252,7 @@ function executeAction(action)
 
   if ("increments" in action)
   {
-    let increments = action.increments;
-
-    hunger += increments.hunger == undefined ? 0 : increments.hunger;
-    concern += increments.concern == undefined ? 0 : increments.concern;
-    anxiety += increments.anxiety == undefined ? 0 : increments.anxiety;
-    setGlobals();
+    increment_stats(action);
   }
 
   if ("img" in action)
@@ -257,6 +263,10 @@ function executeAction(action)
   if ("scene" in action)
   {
     changeScene(action.scene);
+  }
+
+  if ("music" in action){
+    setMusic(action.music);
   }
 }
 
