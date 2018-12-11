@@ -12,7 +12,8 @@ var a = {
       {
         "narration" : "",
         "img" : "concernEnd.png",
-        "actionName" : "concern end"
+        "actionName" : "concern end",
+        "music" : "intro.wav"
       }
    ],
    [
@@ -26,7 +27,8 @@ var a = {
      {
        "narration" : "",
        "img" : "anxietyEnd.png",
-       "actionName" : "anxiety end"
+       "actionName" : "anxiety end",
+       "music" : "intro.wav"
      }
   ],
 
@@ -43,7 +45,8 @@ var a = {
     {
       "narration" : "",
       "img" : "successEnd.png",
-      "actionName" : "success end"
+      "actionName" : "success end",
+      "music" : "intro.wav"
     }
   ],
 
