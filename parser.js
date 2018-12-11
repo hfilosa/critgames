@@ -26,8 +26,9 @@ function getBlurTimeout()
   let seconds = 15;
   seconds -= 2 * anxiety;
   seconds -= 3 * hunger;
+
+  // capping blur at min 3 seconds
   seconds = Math.max(seconds, 3);
-  // console.log("blur timeout is ", seconds);
   return seconds * 1000;
 }
 
@@ -36,9 +37,22 @@ function getCommandPromptTimeout()
   let seconds = 10;
   seconds -= 2 * anxiety;
   seconds -= hunger;
+  // capping buffer change at min 3 seconds
   seconds = Math.max(seconds, 3);
   return seconds * 1000;
 }
+
+function getShakeTimeout()
+{
+  let seconds = 30;
+  seconds -= 5 * anxiety;
+  seconds -= 3 * hunger;
+  // capping buffer change at min 3 seconds
+  seconds = Math.max(seconds, 3);
+  return seconds * 1000;
+}
+
+
 
 function queerCommandPrompt()
 {
@@ -69,8 +83,17 @@ function blurImage()
   setTimeout(blurImage, getBlurTimeout());
 }
 
+function shakeImage()
+{
+  $("#image").shake();
+  console.log("Shaking!");
+  setTimeout(shakeImage, getShakeTimeout());
+}
+
 setTimeout(blurImage, getBlurTimeout());
 setTimeout(queerCommandPrompt, getCommandPromptTimeout());
+setTimeout(shakeImage, getShakeTimeout());
+
  
 // ssetTimeout(blurImage, 15 * 1000);
 
