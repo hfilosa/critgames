@@ -177,7 +177,8 @@ function helpCalled()
 function changeScene(sceneToChangeTo)
 {
   currScene = getSceneByName(sceneToChangeTo);
-  setImage(currScene.img);
+  if ("img" in currScene)
+    setImage(currScene.img);
   setTime();
   console.log(getTimeInScene());
 }

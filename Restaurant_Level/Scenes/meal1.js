@@ -13,7 +13,8 @@ var a = {
         "narration" : "The food arrives",
         "actionName" : "meal 1 intro text",
       }
-   ]
+   ],
+
     [
       {
         "notPriorActions" : [
@@ -38,7 +39,8 @@ var a = {
        "narration" : "!!.",
        "actionName" : "friends are super suspicious",
        "img" : "noEat.png",
-       "increments" : {"concern" : 2}
+       "increments" : {"concern" : 2},
+       "scene" : "game over"
      }
   ],
 
@@ -98,6 +100,7 @@ var a = {
         "increments" : {"anxiety" : 1},
         "img" : "chew.png",
         "narration" : "WhY d1d y0u just d0 th4t? Y0u have no self-contr0l. Y0u have no 1dea h0w m4ny C4lor13s that is. Y0u’ll g3t t00 fat!",
+        "scene" : "game over"
       }
     ],
 
@@ -113,7 +116,8 @@ var a = {
         "actionName" : "spit out food",
         "increments" : {"concern" : 2},
         "narration" : "You spit up your food on the table. Your friends are appalled. You couldn’t have thought of anything better to do?",
-        "img" : "spit.png"
+        "img" : "spit.png",
+        "scene" : "game over"
       }
     ],
 
@@ -127,7 +131,8 @@ var a = {
       }, {
         "actionName" : "spit out food into nakpkin",
         "narration" : "Your friends didn’t notice that. Good job.",
-        "img" : "napkin.png"
+        "img" : "napkin.png",
+        "scene" : "game over"
       }
     ],
 
@@ -152,7 +157,8 @@ var a = {
         "actionName" : "vomit",
         "narration" : "You are such an idiot. You just… You threw up on the table. Your friends are definitely worried now.",
         "increments" : {"concern" : 2, "anxiety" : 2},
-        "img" : "barf.png"
+        "img" : "barf.png",
+        "scene" : "game over"
       }
     ],
 
@@ -161,12 +167,11 @@ var a = {
         "matchingWords" : [
           "talk", "chat", "converse", "gossip", "speak"
         ],
-        "priorActions" : ["converse"]
+        "notPriorActions" : ["converse"]
       }, {
         "actionName" : "converse",
         "narration" : "You talk to your friends about a person you all know. They seem to be distracted by this - maybe they won’t notice if you don’t eat that...",
-        "increments" : {"concern" : -1},
-        "img" : "barf.png"
+        "increments" : {"concern" : -1}
       }
     ],
 
@@ -178,9 +183,10 @@ var a = {
       },
       {
         "narration" : "Oh my FUCKING God. Why did you do that? That was a horrible idea - you got kicked out of the restaurant. You avoided eating, though, so.. Good job?",
-        "actionName" : "waiter arrives",
+        "actionName" : "flip table",
         "img" : "alarmlevel2_fliptable_nodrinks.png",
-        "increments" : {"concern":2}
+        "increments" : {"concern":2},
+        "scene" : "game over"
       }
     ],
 
@@ -215,7 +221,8 @@ var a = {
       {
         "narration" : "That was the dumbest thing you’ve ever done in your life. Your friends had no idea what to do - how embarrassing.",
         "img" : "ohmygodshesfuckingdead.png",
-        "increments" : {"concern" : 2}
+        "increments" : {"concern" : 2},
+        "scene" : "game over"
       }
     ],
 
@@ -228,7 +235,8 @@ var a = {
       {
         "narration" : "Well, you just left. You avoided eating, but your friends are really weirded out. You really messed that one up.",
         "img" : "shejustfuckingleft.png",
-        "increments" : {"concern" : 2}
+        "increments" : {"concern" : 2},
+        "scene" : "game over"
       }
     ]
 

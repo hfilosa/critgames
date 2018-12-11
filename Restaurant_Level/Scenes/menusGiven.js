@@ -64,9 +64,10 @@ var a = {
        },
        {
          "narration" : "Oh my FUCKING God. Why did you do that? That was a horrible idea - you got kicked out of the restaurant. You avoided eating, though, so.. Good job?",
-         "actionName" : "waiter arrives",
+         "actionName" : "table flip",
          "img" : "alarmlevel2_fliptable_nodrinks.png",
-         "increments" : {"concern":2}
+         "increments" : {"concern":2},
+         "scene" : "game over"
        }
      ],
 
@@ -101,7 +102,8 @@ var a = {
        {
          "narration" : "That was the dumbest thing you’ve ever done in your life. Your friends had no idea what to do - how embarrassing.",
          "img" : "ohmygodshesfuckingdead.png",
-         "increments" : {"concern" : 2}
+         "increments" : {"concern" : 2},
+         "scene" : "game over"
        }
      ],
 
@@ -114,7 +116,8 @@ var a = {
        {
          "narration" : "Well, you just left. You avoided eating, but your friends are really weirded out. You really messed that one up.",
          "img" : "shejustfuckingleft.png",
-         "increments" : {"concern" : 2}
+         "increments" : {"concern" : 2},
+         "scene" : "game over"
        }
      ]
 
