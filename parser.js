@@ -154,9 +154,21 @@ function helpCalled()
     let action_condition = action[0];
     if ("matchingWords" in action_condition)
     {
-      let action_str = action_condition.matchingWords[0];
-      action_str = action_str.replace("<", "");
-      input_options.push(action_str);
+      if ("priorActions" in action_condition){
+        console.log("check prior actions");
+        console.log(action_condition);
+        console.log(action_condition.priorActions);
+        if (action_condition.priorActions.some(actionName => pastActions.includes(actionName))) {
+          let action_str = action_condition.matchingWords[0];
+          action_str = action_str.replace("<", "");
+          input_options.push(action_str);
+        }
+      }
+      else {
+        let action_str = action_condition.matchingWords[0];
+        action_str = action_str.replace("<", "");
+        input_options.push(action_str);
+      }
     }
   }
   narrate("You can: " + input_options.join(", "));
@@ -186,7 +198,7 @@ function onSubmit(str) {
 function word_present(command, synonyms){
   for (n in synonyms){
     var synonym = synonyms[n];
-    if (synonym.charAt[0] == '<'){
+    if (synonym.charAt(0) == "<"){
       //must be an exact match
       synonym = synonym.substring(1);
       if (command == synonym)
