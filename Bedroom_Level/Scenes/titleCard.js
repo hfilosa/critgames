@@ -1,11 +1,11 @@
 var a = {
   "sceneName" : "title card",
-  "img" : "MICAH.png",
+  "img" : "titleScreen.png",
   "actions" : [
     [
       {
         "matchingWords" : [
-          "play","start","game"
+          "start","play","game"
         ],
         "notPriorActions" : [
           "start"
