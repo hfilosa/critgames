@@ -36,8 +36,8 @@ var a = {
         "success end"
       ],
       "timeRequirement" : 5,
-      "globals" : {"concern": {"low" : 0, "high" : 2},
-                   "anxiety": {"low" : 0, "high" : 2}
+      "globals" : {"concern": {"low" : 0, "high" : 1},
+                   "anxiety": {"low" : 0, "high" : 1}
                   }
     },
     {
