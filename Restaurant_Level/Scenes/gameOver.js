@@ -7,11 +7,11 @@ var a = {
           "concern end"
         ],
         "timeRequirement" : 5,
-        "globals" : {"concern": {"low" : 2, "high" : 10}}
+        "globals" : {"concern": {"low" : 2, "high" : 100}}
       },
       {
-        "narration" : "!!",
-        "img" : "!!",
+        "narration" : "",
+        "img" : "concernEnd.png",
         "actionName" : "concern end"
       }
    ],
@@ -21,11 +21,11 @@ var a = {
          "anxiety end"
        ],
        "timeRequirement" : 5,
-       "globals" : {"anxiety": {"low" : 2, "high" : 10}}
+       "globals" : {"anxiety": {"low" : 2, "high" : 100}}
      },
      {
-       "narration" : "!!",
-       "img" : "!!",
+       "narration" : "",
+       "img" : "anxietyEnd.png",
        "actionName" : "anxiety end"
      }
   ],
@@ -41,8 +41,8 @@ var a = {
                   }
     },
     {
-      "narration" : "!!",
-      "img" : "!!",
+      "narration" : "",
+      "img" : "successEnd.png",
       "actionName" : "success end"
     }
   ],
