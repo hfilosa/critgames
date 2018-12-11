@@ -31,6 +31,7 @@ function getBlurTimeout()
   seconds -= 3 * hunger;
 
   // capping blur at min 3 seconds
+  seconds = randInt(seconds,15);
   seconds = Math.max(seconds, 3);
   return seconds * 1000;
 }
@@ -40,6 +41,7 @@ function getCommandPromptTimeout()
   let seconds = 10;
   seconds -= 2 * anxiety;
   seconds -= hunger;
+  seconds = randInt(seconds,10);
   // capping buffer change at min 3 seconds
   seconds = Math.max(seconds, 3);
   return seconds * 1000;
@@ -47,10 +49,11 @@ function getCommandPromptTimeout()
 
 function getShakeTimeout()
 {
-  let seconds = 30;
+  let seconds = 20;
   seconds -= 5 * anxiety;
   seconds -= 3 * hunger;
   // capping buffer change at min 3 seconds
+  seconds = randInt(seconds,20);
   seconds = Math.max(seconds, 3);
   return seconds * 1000;
 }
@@ -93,7 +96,7 @@ function shakeImage()
 
   setTimeout(shakeImage, getShakeTimeout());
 }
- 
+
 function increment_stats(action){
   let increments = action.increments;
 
