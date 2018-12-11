@@ -37,6 +37,20 @@ var a = {
        "actionName" : "answer yes",
        "scene" : {"concern" : 1}
      }
+   ],
+
+   [
+     {
+       "matchingWords" : [
+         "flip table", "flip", "throw"
+       ]
+     },
+     {
+       "narration" : "Oh my God. Why did you do that. That was a horrible idea - you got kicked out of the restaurant. You avoided eating, though, so.. Good job?",
+       "actionName" : "waiter arrives",
+       "img" : "alarmlevel2_fliptable_nodrinks.png",
+       "increments" : {"concern":2}
+     }
    ]
 
  ]

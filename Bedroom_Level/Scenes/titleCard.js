@@ -15,6 +15,18 @@ var a = {
         "music" : "intro.wav",
         "scene" : "monologue"
       }
+    ],
+    [
+      {
+        "matchingWords" : [
+          "debug"
+        ]
+      }, {
+        "actionName" : "debug",
+        "music" : "RestaurantMusic.wav",
+        "scene" : "start",
+        "level" : "Restaurant_Level",
+      }
     ]
  ]
 };
