@@ -19,7 +19,7 @@ var a = {
     [
       {
         "matchingWords" : [
-          "expresso"
+          "espresso"
         ]
       }, {
         "actionName" : "debug",

@@ -7,7 +7,7 @@ let level = "Bedroom_Level";
 
 let currScene = scenes["title card"];
 
-let restart = ["try again", "restart"];
+let restart = ["espresso"];
 
 let pastActions = []; // list of strings
 
