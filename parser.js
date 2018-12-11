@@ -172,13 +172,15 @@ function helpCalled()
         if (action_condition.priorActions.some(actionName => pastActions.includes(actionName))) {
           let action_str = action_condition.matchingWords[0];
           action_str = action_str.replace("<", "");
-          input_options.push(action_str);
+          if (action_str != "expresso")
+            input_options.push(action_str);
         }
       }
       else {
         let action_str = action_condition.matchingWords[0];
         action_str = action_str.replace("<", "");
-        input_options.push(action_str);
+        if (action_str != "expresso")
+          input_options.push(action_str);
       }
     }
   }

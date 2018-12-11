@@ -19,13 +19,12 @@ var a = {
     [
       {
         "matchingWords" : [
-          "debug"
+          "expresso"
         ]
       }, {
         "actionName" : "debug",
-        "music" : "RestaurantMusic.wav",
-        "scene" : "start",
-        "level" : "Restaurant_Level",
+        "music" : "intro.wav",
+        "scene" : "choice",
       }
     ]
  ]
